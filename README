@@ -1,0 +1,15 @@
+This is class work project for Operating System class 2301371
+
+This is Error Diffusion using Floyd-Steinberg Algorithm written in Java
+
+Techs
+- Swing UI for display UI
+- java.awt.image.* for Image Processing
+- java.util.concurrent.ExecutorService for Spawn Threads, Create Threads pool and Threads management
+
+Done
+- Convert All type of Image To Back-White Image
+- Use Multithreading to process the image
+- graph show CPU core and tricks
+To Do
+- Create Graph to display Threads usage
