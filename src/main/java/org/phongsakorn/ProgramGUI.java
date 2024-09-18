@@ -8,22 +8,29 @@ import java.io.File;
 import java.io.IOException;
 
 class ProgramGUI extends JFrame {
-    private JButton openButton, saveButton, convertButton;  // 3 Buttons in Program
+    private JButton openButton, convertButton;  // 3 Buttons in Program
     private JLabel imageLabel;  // Canvas for Image
-    private BufferedImage originalImage, convertedImage;    // Two image instance
-    private final ImageProcessor imageProcessor;        // Image Processor Instance Jaa
-    private JButton showCPUUsageButton;
+    private BufferedImage originalImage, convertedImage, resultedImage;    // Two image instance
+    private final ImageProcessor[] imageProcessor;        // Image Processor Instance Jaa
+    private final long[] cpuTimes;
+    private final int availableProcessors;
+    private CoreGraph coreGraph;
 
     protected ProgramGUI() {
 
         // Initiate UI properties
         setTitle("Operating System Class work 4");
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        int availableProcessors = Runtime.getRuntime().availableProcessors();
-        imageProcessor = new ImageProcessor(availableProcessors);
+        availableProcessors = Runtime.getRuntime().availableProcessors();
+        imageProcessor = new ImageProcessor[8];
+        cpuTimes = new long[availableProcessors];
+
+        for (int i = 0; i < availableProcessors; i++) {
+            imageProcessor[i] = new ImageProcessor(i+1);
+        }
+
 
         initComponents();
         addComponentsToFrame();
@@ -78,8 +85,15 @@ class ProgramGUI extends JFrame {
             return;
         }
 
-        convertedImage = imageProcessor.convertToBlackAndWhite(originalImage);
-        imageLabel.setIcon(new ImageIcon(convertedImage));
+        for (int i = 0; i < this.availableProcessors; i++) {
+            convertedImage = imageProcessor[i].convertToBlackAndWhite(originalImage);
+            cpuTimes[i] = imageProcessor[i].getCpuTimes();
+            if (i == 0){
+                resultedImage = convertedImage;
+            }
+        }
+        imageLabel.setIcon(new ImageIcon(resultedImage));
+        coreGraph.CoreGraphcpu(cpuTimes);
     }
 
 }
