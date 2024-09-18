@@ -7,13 +7,9 @@ import java.util.concurrent.TimeUnit;
 
 class ImageProcessor {
     private final int nThreads;
-<<<<<<< HEAD:src/main/java/org/phongsakorn/ImageProcessor.java
     private final long[] cpuTimes;
 
     private CoreGraph coreGraph;
-=======
-    private final long[] cpuTimes;  // To store CPU time for each thread
->>>>>>> origin/main:src/main/java/org/bunyawat/ImageProcessor.java
 
     protected ImageProcessor(int nThreads) {
         this.nThreads = nThreads;

@@ -1,15 +1,11 @@
-<<<<<<< HEAD:src/main/java/org/phongsakorn/CoreGraph.java
 package org.phongsakorn;
-=======
-package org.bunyawat;
->>>>>>> origin/main:src/main/java/org/bunyawat/CoreGraph.java
+
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
-<<<<<<< HEAD:src/main/java/org/phongsakorn/CoreGraph.java
 import javax.swing.*;
 
 
@@ -18,13 +14,7 @@ public class CoreGraph extends JFrame {
     private ChartPanel chartPanel;
     private DefaultCategoryDataset dataset ;
     public static void CoreGraphcpu(long[] cpuTimes) {
-=======
 
-import javax.swing.*;
-
-public class CoreGraph {
-    protected static void showCPUUsageChart(long[] cpuTimes) {
->>>>>>> origin/main:src/main/java/org/bunyawat/CoreGraph.java
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         // Add CPU usage data to dataset
@@ -50,8 +40,4 @@ public class CoreGraph {
         chartFrame.setLocationRelativeTo(null);
         chartFrame.setVisible(true);
     }
-<<<<<<< HEAD:src/main/java/org/phongsakorn/CoreGraph.java
-=======
-
->>>>>>> origin/main:src/main/java/org/bunyawat/CoreGraph.java
 }

@@ -12,24 +12,18 @@ class ProgramGUI extends JFrame {
     private JLabel imageLabel;  // Canvas for Image
     private BufferedImage originalImage, convertedImage;    // Two image instance
     private final ImageProcessor imageProcessor;        // Image Processor Instance Jaa
-    private final long[] cpuTimes;   // List to hold CPU usage times
     private JButton showCPUUsageButton;
 
-<<<<<<<< HEAD:src/main/java/org/phongsakorn/ConverterGUI.java
-    public ConverterGUI() {
-        setTitle("Operating System Class work 4");
-========
     protected ProgramGUI() {
 
         // Initiate UI properties
-        setTitle("Operating System Class work 4 POND HELP MEEE");
->>>>>>>> origin/main:src/main/java/org/phongsakorn/ProgramGUI.java
+        setTitle("Operating System Class work 4");
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         int availableProcessors = Runtime.getRuntime().availableProcessors();
         imageProcessor = new ImageProcessor(availableProcessors);
-        cpuTimes = imageProcessor.getCpuTimes(); // Initialize list with available CPUs
 
         initComponents();
         addComponentsToFrame();
@@ -43,7 +37,6 @@ class ProgramGUI extends JFrame {
         openButton = new JButton("Open Image");
         saveButton = new JButton("Save Image");
         convertButton = new JButton("Convert");
-        showCPUUsageButton = new JButton("Show CPU Usage");  // Button to show CPU usage chart
 
         imageLabel = new JLabel();
         imageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -55,7 +48,6 @@ class ProgramGUI extends JFrame {
         buttonPanel.add(openButton);
         buttonPanel.add(convertButton);
         buttonPanel.add(saveButton);
-        buttonPanel.add(showCPUUsageButton);  // Add CPU usage button
 
         add(buttonPanel, BorderLayout.NORTH);
         add(new JScrollPane(imageLabel), BorderLayout.CENTER);
@@ -65,7 +57,6 @@ class ProgramGUI extends JFrame {
         openButton.addActionListener(e -> openImage());
         convertButton.addActionListener(e -> convertImage());
         saveButton.addActionListener(e -> saveImage());
-        showCPUUsageButton.addActionListener(e -> CoreGraph.showCPUUsageChart(cpuTimes));  // Show CPU usage chart on click
     }
 
     private void openImage() {
