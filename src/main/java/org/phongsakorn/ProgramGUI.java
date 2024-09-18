@@ -35,8 +35,8 @@ class ProgramGUI extends JFrame {
 
     private void initComponents() {
         openButton = new JButton("Open Image");
-        saveButton = new JButton("Save Image");
         convertButton = new JButton("Convert");
+
 
         imageLabel = new JLabel();
         imageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -47,7 +47,6 @@ class ProgramGUI extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(openButton);
         buttonPanel.add(convertButton);
-        buttonPanel.add(saveButton);
 
         add(buttonPanel, BorderLayout.NORTH);
         add(new JScrollPane(imageLabel), BorderLayout.CENTER);
@@ -56,7 +55,6 @@ class ProgramGUI extends JFrame {
     private void addActionListeners() {
         openButton.addActionListener(e -> openImage());
         convertButton.addActionListener(e -> convertImage());
-        saveButton.addActionListener(e -> saveImage());
     }
 
     private void openImage() {
@@ -66,7 +64,8 @@ class ProgramGUI extends JFrame {
             File selectedFile = fileChooser.getSelectedFile();
             try {
                 originalImage = ImageIO.read(selectedFile);
-                imageLabel.setIcon(new ImageIcon(originalImage));
+                Image newImage = originalImage.getScaledInstance(700, 500, Image.SCALE_DEFAULT);
+                imageLabel.setIcon(new ImageIcon(newImage));
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Error opening image: " + ex.getMessage());
             }
@@ -83,22 +82,4 @@ class ProgramGUI extends JFrame {
         imageLabel.setIcon(new ImageIcon(convertedImage));
     }
 
-    private void saveImage() {
-        if (convertedImage == null) {
-            JOptionPane.showMessageDialog(this, "Please convert an image first.");
-            return;
-        }
-
-        JFileChooser fileChooser = new JFileChooser();
-        int result = fileChooser.showSaveDialog(this);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            try {
-                ImageIO.write(convertedImage, "png", selectedFile);
-                JOptionPane.showMessageDialog(this, "Image saved successfully.");
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error saving image: " + ex.getMessage());
-            }
-        }
-    }
 }
